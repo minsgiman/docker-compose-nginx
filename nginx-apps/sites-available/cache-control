@@ -1,0 +1,17 @@
+# Enable Cache Control
+# 로컬 설정, 웹페이지, api 요청등은 캐싱하지 않고 매번 새로운 자료로 제공한다.
+location ~* \.(?:manifest|html?|php?|xml|json)$ {
+    expires -1;
+}
+
+location ~* \.(?:css|js)$ {
+    expires -1;
+    access_log off;
+    add_header Cache-Control "public";
+}
+
+location ~* \.(?:jpg|jpeg|png|gif|ico|gz|svg|svgz|ogg|mp4|webm|ogv|htc|cur)$ {
+    expires 1M;
+    access_log off;
+    add_header Cache-Control "public";
+}

@@ -1,0 +1,4 @@
+*.log
+
+# cert files
+**/certs/*

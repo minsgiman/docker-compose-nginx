@@ -1,0 +1,31 @@
+version: "3.8"
+
+services:
+  nginx-proxy:
+    container_name: nginx
+    image: nginx:latest
+    ports:
+      - 80:80
+      - 443:443
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf
+      - ./sites-available:/etc/nginx/sites-available
+      - ./certs:/etc/nginx/certs
+      - ./logs:/var/log/nginx
+      - $HOME/deploy:/usr/share/nginx/html
+    privileged: true
+    restart: always
+    environment:
+      - TZ=Asia/Seoul
+
+  # storybook:
+  #   container_name: storybook
+  #   image: nginx:latest
+  #   volumes:
+  #     - $HOME/deploy/storybook:/usr/share/nginx/html
+  #   privileged: true
+  #   restart: always
+  #   environment:
+  #     - TZ=Asia/Seoul
+  #   depends_on:
+  #     - nginx-proxy
