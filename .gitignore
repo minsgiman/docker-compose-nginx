@@ -1,4 +1,2 @@
 *.log
-
-# cert files
-**/certs/*
+.idea
